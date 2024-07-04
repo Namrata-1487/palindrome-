@@ -4,19 +4,21 @@ const result = document.getElementById("result");
 
 function validityofinput() {
   // using split and revese function
-  const actulaValue = input.value;
-  const splitvalue = input.value.split("");
+  const actulaValue = input.value
+    .replace(/[\$\*\.','\s\-\_\(\)\:\/]/g, "")
+    .toLowerCase();
+
+  const splitvalue = actulaValue.split("");
   const reverse = splitvalue.reverse().join("");
   // console.log(reverse);
-  // console.log(splitvalue[1]);
+  console.log(splitvalue);
   if (actulaValue.length === 0) {
     alert("Please input a value");
   } else {
-    if (actulaValue === reverse) {
-      result.innerHTML = "<b>" + input.value + "</b>" + " it is a palindrome";
+    if (actulaValue === reverse || actulaValue.length == 1) {
+      result.innerHTML = "<b>" + input.value + "</b>" + " is a palindrome";
     } else {
-      result.innerHTML =
-        "<b>" + input.value + "</b>" + " it is not a palindrome";
+      result.innerHTML = "<b>" + input.value + "</b>" + " is not a palindrome";
     }
   }
 
